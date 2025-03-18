@@ -541,6 +541,9 @@ write_float64(Info *info, double value) {
 
 static void
 write_int(Info *info, int value) {
+#ifdef TARGET_GNW
+  write_int32_t(info, value);
+#else
   if (sizeof(int) == sizeof(int16_t)) {
     write_int16_t(info, value);
   }
@@ -553,6 +556,7 @@ write_int(Info *info, int value) {
   else {
     eris_error(info, ERIS_ERR_TYPE_INT);
   }
+#endif
 }
 
 static void

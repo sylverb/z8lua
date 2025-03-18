@@ -191,13 +191,13 @@ static int pico8_tostr(lua_State *l) {
             if (flags) {
                 uint32_t b = (uint32_t)x.bits();
                 if ((flags & 0x3) == 0x3) {
-                    sprintf(buffer, "0x%04x%04x", (b >> 16) & 0xffff, b & 0xffff);
+                    sprintf(buffer, "0x%04lx%04lx", (b >> 16) & 0xffff, b & 0xffff);
                 }
                 else if ((flags & 0x2) == 0x2) {
-                    sprintf(buffer, "%d", b);
+                    sprintf(buffer, "%ld", b);
                 }
                 else {
-                    sprintf(buffer, "0x%04x.%04x", (b >> 16) & 0xffff, b & 0xffff);
+                    sprintf(buffer, "0x%04lx.%04lx", (b >> 16) & 0xffff, b & 0xffff);
                 }
             } else {
                 lua_number2str(buffer, x);
